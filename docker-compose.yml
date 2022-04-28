@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  webcont:
+    build: ./services/web
+    command: python manage.py run -h 0.0.0.0
+    volumes:
+      - ./services/web/:/usr/src/app/
+    ports:
+      - 5000:5000
+    environment:
+      - FLASK_APP=project/__init__.py
+      - FLASK_ENV=development
+      - FLASK_RUN_PORT=5000
+      - DATABASE_URL=postgresql://pstgr_user:pstgr_pass@dbcont:5432/pstgr_db
+      - REDIS_URL=redis://rediscont:6379
+      - APP_FOLDER=/usr/src/app
+      #Used for entrypoint.sh while waiting postgre container is ready
+      - SQL_HOST=dbcont
+      - SQL_PORT=5432
+      - DATABASE=postgres
+  dbcont:
+    image: "postgres:13-alpine"
+    ports: 
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=pstgr_user
+      - POSTGRES_PASSWORD=pstgr_pass
+      - POSTGRES_DB=pstgr_db
+  rediscont:
+    image: "redis:alpine"
+    ports:
+      - 6379:6379
+#    command: redis-server --requirepass sOmE_sEcUrE_pAsS
+#    volumes:
+#     - $PWD/redis-data:/var/lib/redis
+#      - $PWD/redis.conf:/usr/local/etc/redis/redis.conf
+#    environment:
+#     - REDIS_REPLICATION_MODE=master
+volumes:
+  postgres_data:

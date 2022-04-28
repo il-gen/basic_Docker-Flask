@@ -1,0 +1,135 @@
+{% extends "layout.html" %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendors/jqvmap/dist/jqvmap.min.css') }}">
+{% endblock %}
+
+
+{% block body %}
+        <div class="breadcrumbs">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Welcome to Dashboard</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li class="active">Dashboard</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content mt-3">
+
+            <div class="col-sm-6 col-lg-3">
+                <div class="card text-white bg-flat-color-1">
+                    <div class="card-body pb-0">
+                        <div class="dropdown float-right">
+                            <button class="btn bg-transparent dropdown-toggle theme-toggle text-light" type="button" id="dropdownMenuButton1" data-toggle="dropdown">
+                                <i class="fa fa-cog"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <div class="dropdown-menu-content">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="mb-0">
+                            <span class="count">12</span>
+                        </h4>
+                        <p class="text-light">User</p>
+
+                        <div class="chart-wrapper px-0" style="height:70px;" height="70">
+                            <canvas id="widgetChart1"></canvas>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <!--/.col-->
+
+            <div class="col-sm-6 col-lg-3">
+                <div class="card text-white bg-flat-color-2">
+                    <div class="card-body pb-0">
+                        <div class="dropdown float-right">
+                            <button class="btn bg-transparent dropdown-toggle theme-toggle text-light" type="button" id="dropdownMenuButton2" data-toggle="dropdown">
+                                <i class="fa fa-cog"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                                <div class="dropdown-menu-content">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="mb-0">
+                            <span class="count">8</span>
+                        </h4>
+                        <p class="text-light">Devices</p>
+
+                        <div class="chart-wrapper px-0" style="height:70px;" height="70">
+                            <canvas id="widgetChart2"></canvas>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--/.col-->
+
+            <div class="col-sm-6 col-lg-3">
+                <div class="card text-white bg-flat-color-3">
+                    <div class="card-body pb-0">
+                        <div class="dropdown float-right">
+                            <button class="btn bg-transparent dropdown-toggle theme-toggle text-light" type="button" id="dropdownMenuButton3" data-toggle="dropdown">
+                                <i class="fa fa-cog"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+                                <div class="dropdown-menu-content">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="mb-0">
+                            <span class="count">34</span>
+                        </h4>
+                        <p class="text-light">KPIs</p>
+
+                    </div>
+
+                    <div class="chart-wrapper px-0" style="height:70px;" height="70">
+                        <canvas id="widgetChart3"></canvas>
+                    </div>
+                </div>
+            </div>
+            <!--/.col-->
+
+
+
+            
+            
+
+
+        </div> <!-- .content -->
+            
+{% endblock %}
+
+{% block script %}
+    <script src="{{ url_for('static', filename='vendors/chart.js/dist/Chart.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/dashboard.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/widgets.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendors/jqvmap/dist/jquery.vmap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendors/jqvmap/examples/js/jquery.vmap.sampledata.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendors/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
+
+{% endblock %}
