@@ -1,16 +1,11 @@
-from flask import Flask,session,flash, send_from_directory, \
-    render_template, jsonify, request, redirect, Response,g, current_app,Blueprint, url_for
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_session import Session
-from sqlalchemy import MetaData
 from .config import DevConfig,ProdConfig
-import json
 import os
-
 
 db = SQLAlchemy()
 sess = Session() 
-
 
 def create_app():
 
@@ -24,17 +19,7 @@ def create_app():
     else:
         app.logger.info("FLASK_ENV is NUL!!!");
         
-    # @app.before_request
-    # def before_request():
-    #     # session.sid="flask_111" 
-    #     current_app.logger.info(">>>>before_request")
-    #     # s=session.copy()
-    #     r=request.get_json()
-    #     # for attr in dir(session):
-    #     #     current_app.logger.info("session.%s = %r" % (attr, getattr(session, attr)))
-    #     current_app.logger.info(r)
 
-    #CORS(app)  
     
     #############SQLAcademy INIT#############
     ##First init db and create Tables if you want
@@ -48,7 +33,7 @@ def create_app():
     
      #############BLUEPRINTS REGISTER#############     
     
-    # blueprint for non-auth parts of app
+    # blueprint for non-auth routes of app
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
 

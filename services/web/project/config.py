@@ -8,8 +8,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config(object):
     """Base config vars."""
     ROOT_PATH = basedir
-    SECRET_KEY = '9OLWxND4o83j4Kty567pO'
-    #SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'db.sqlite?check_same_thread=False')
+    SECRET_KEY = os.environ.get('SECRET_KEY')
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
         'sqlite:///' + os.path.join(basedir, 'app.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
@@ -21,7 +20,6 @@ class Config(object):
     PERMANENT_SESSION_LIFETIME= timedelta(days=1)
     SESSION_PERMANENT=False
     SESSION_USE_SIGNER=True
-    #not use localhost or 0.0.0.0 in container
     SESSION_REDIS = redis.from_url(f"{os.environ.get('REDIS_URL')}")
     
    
@@ -34,4 +32,3 @@ class DevConfig(Config):
     DEBUG = True
     TESTING = True
     LOGIN_DISABLED = False 
-#    SESSION_TYPE = environ.get('SESSION_TYPE')

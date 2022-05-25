@@ -1,9 +1,6 @@
-
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
-from datetime import datetime
-
 
 class User(UserMixin, db.Model):
     __tablename__ = 'user'
@@ -12,7 +9,6 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(100))
     name = db.Column(db.String(1000))
     surname = db.Column(db.String(1000))
-    active = db.Column(db.Boolean(), default=True, nullable=False)
 
     def set_password(self, password):
         """Create hashed password."""
